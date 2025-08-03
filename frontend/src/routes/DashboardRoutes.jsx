@@ -18,7 +18,16 @@ import RegisteredUserPlacementTestPage from '../pages/dashboard/registeredUser/R
 // Import các trang của Học viên
 import StudentDashboardPage from '../pages/dashboard/student/StudentDashboardPage';
 // import StudentSchedulePage from '../pages/dashboard/student/StudentSchedulePage'; // Uncomment when page is ready
-
+// Import các trang của Giảng viên
+import TeacherDashboardPage from '../pages/dashboard/teacher/TeacherDashboardPage';
+import TeacherClassesPage from '../pages/dashboard/teacher/TeacherClassesPage';
+import TeacherClassStudentsPage from '../pages/dashboard/teacher/TeacherClassStudentsPage';
+import TeacherSchedulePage from '../pages/dashboard/teacher/TeacherSchedulePage';
+import TeacherAttendancePage from '../pages/dashboard/teacher/TeacherAttendancePage';
+import TeacherGradeEntryPage from '../pages/dashboard/teacher/TeacherGradeEntryPage';
+import TeacherAssignmentManagementPage from '../pages/dashboard/teacher/TeacherAssignmentManagementPage';
+import TeacherSalaryPage from '../pages/dashboard/teacher/TeacherSalaryPage';
+import TeacherNotificationsPage from '../pages/dashboard/teacher/TeacherNotificationsPage';
 // ... (các imports bị comment khác)
 
 const DashboardRoutes = () => {
@@ -26,36 +35,42 @@ const DashboardRoutes = () => {
     <Routes>
       {/* Protected Route cho mọi người dùng đã đăng nhập */}
       <Route element={<ProtectedRoute allowedRoles={[ROLES.HOC_VIEN, ROLES.GIANG_VIEN, ROLES.QUAN_LY_HOC_VU, ROLES.KE_TOAN, ROLES.QUAN_TRI_HE_THONG, ROLES.REGISTERED_USER]} />}>
-        {/* Main dashboard entry point, this acts as the default for "/" */}
-        {/* The first route for "/" should be direct or use the Layout as an element */}
+        {/* Main dashboard entry point */}
         <Route path="/" element={<DashboardLayout />}>
-            {/* This index route renders DashboardHomePage when path is exactly "/" */}
-            <Route index element={<DashboardHomePage />} />
-            <Route path="profile" element={<UserProfilePage />} /> {/* Profile is also under DashboardLayout */}
+          {/* Default route for "/" */}
+          <Route index element={<DashboardHomePage />} />
+          <Route path="profile" element={<UserProfilePage />} />
 
-            {/* Routes cho Registered User - NESTED */}
-            {/* Note: The parent route has "/*" indicating it can have child routes. */}
-            <Route path="registered" element={<ProtectedRoute allowedRoles={[ROLES.REGISTERED_USER]} />}>
-                {/* Use 'index' for the default route under /registered */}
-                <Route index element={<RegisteredUserDashboardPage />} />
-                <Route path="enroll" element={<RegisteredUserCourseEnrollmentPage />} />
-                <Route path="placement-test" element={<RegisteredUserPlacementTestPage />} />
-            </Route>
+          {/* Routes cho Registered User */}
+          <Route path="registered" element={<ProtectedRoute allowedRoles={[ROLES.REGISTERED_USER]} />}>
+            <Route index element={<RegisteredUserDashboardPage />} />
+            <Route path="enroll" element={<RegisteredUserCourseEnrollmentPage />} />
+            <Route path="placement-test" element={<RegisteredUserPlacementTestPage />} />
+          </Route>
 
-            {/* Routes cho Học viên - NESTED */}
-            <Route path="student" element={<ProtectedRoute allowedRoles={[ROLES.HOC_VIEN]} />}>
-                {/* Use 'index' for the default route under /student */}
-                <Route index element={<StudentDashboardPage />} />
-                {/* <Route path="schedule" element={<StudentSchedulePage />} /> */}
-            </Route>
-            {/* ... other roles' routes ... */}
+          {/* Routes cho Học viên */}
+          <Route path="student" element={<ProtectedRoute allowedRoles={[ROLES.HOC_VIEN]} />}>
+            <Route index element={<StudentDashboardPage />} />
+          </Route>
 
-            {/* If you want a catch-all for paths under DashboardLayout that aren't defined */}
-            <Route path="*" element={<Navigate to="/" replace />} />
+           {/* Routes cho Giảng viên */}
+          <Route path="teacher" element={<ProtectedRoute allowedRoles={[ROLES.GIANG_VIEN]} />}>
+             <Route index element={<TeacherDashboardPage />} />
+             <Route path="classes" element={<TeacherClassesPage />} />  {/* Tính năng 12 */}
+            <Route path="classes/:classId/students" element={<TeacherClassStudentsPage />} />
+             <Route path="schedule" element={<TeacherSchedulePage />} />  {/* Tính năng 15 */}
+            <Route path="attendance" element={<TeacherAttendancePage />} />  {/* Tính năng 30 */}
+             <Route path="grades" element={<TeacherGradeEntryPage />} /> {/* Tính năng 27 */}
+            <Route path="assignments" element={<TeacherAssignmentManagementPage />} /> {/* Tính năng 32, 33 */}
+            <Route path="salary" element={<TeacherSalaryPage />} /> {/* Tính năng 40 */}
+            <Route path="notifications" element={<TeacherNotificationsPage />} /> {/* Tính năng 17, 18 */}
+          </Route>
+
+          {/* Catch-all for paths under DashboardLayout */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
 
-        {/* Fallback for any protected route not caught above that shouldn't be accessible
-            or a global 404 for paths not matched by any <Route> */}
+        {/* Global 404 for unmatched protected routes */}
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

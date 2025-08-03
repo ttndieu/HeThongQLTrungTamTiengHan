@@ -48,10 +48,10 @@ const getNavigation = (userRole) => {
         [ROLES.GIANG_VIEN]: [
             { name: 'Lớp học của tôi', href: '/dashboard/teacher/classes', icon: AcademicCapIcon, roles: [ROLES.GIANG_VIEN] },
             { name: 'Quản lý điểm danh', href: '/dashboard/teacher/attendance', icon: ClipboardDocumentListIcon, roles: [ROLES.GIANG_VIEN] },
-            { name: 'Nhập điểm', href: '/dashboard/teacher/grade-entry', icon: DocumentArrowUpIcon, roles: [ROLES.GIANG_VIEN] },
             { name: 'Bài tập học viên', href: '/dashboard/teacher/assignments', icon: ClipboardDocumentListIcon, roles: [ROLES.GIANG_VIEN] },
             { name: 'Lịch dạy', href: '/dashboard/teacher/schedule', icon: CalendarDaysIcon, roles: [ROLES.GIANG_VIEN] },
             { name: 'Quản lý lương', href: '/dashboard/teacher/salary', icon: BanknotesIcon, roles: [ROLES.GIANG_VIEN] },
+            { name: 'Thông báo', href: '/dashboard/teacher/notifications', icon: BellIcon, roles: [ROLES.GIANG_VIEN] },
         ],
         [ROLES.QUAN_LY_HOC_VU]: [
             { name: 'Quản lý Người dùng', href: '/dashboard/academic/students', icon: UserGroupIcon, roles: [ROLES.QUAN_LY_HOC_VU] }, // Gộp quản lý học viên và giảng viên
@@ -81,6 +81,7 @@ const getNavigation = (userRole) => {
 };
 
 const DashboardLayout = ({ children }) => {
+    
     const { user, logout } = useAuth();
     const { showNotification } = useNotification();
     const navigate = useNavigate();

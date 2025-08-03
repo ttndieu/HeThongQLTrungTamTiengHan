@@ -6,6 +6,8 @@ import { useNotification } from '../../contexts/NotificationContext';
 import { Popover, Transition, Menu } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import { ROLES } from '../../utils/constants'; // Import ROLES
+import avatar from '../../assets/avatar.jpg'
+import logo from '../../assets/logo.png'
 
 const navigation = [
   { name: 'Trang chủ', href: '/' },
@@ -66,17 +68,16 @@ const Navbar = () => {
               <span className="sr-only">Your Company</span>
               {/*  */}
               <img
-                className="h-8 w-auto sm:h-10"
-                src="/logo.png" // Thay thế bằng đường dẫn logo của bạn
+                className="h-16 w-auto "
+                src = {logo} // Thay thế bằng đường dẫn logo của bạn
                 alt="Logo"
               />
-              <span className="ml-2 text-xl font-bold text-gray-900">EduCenter</span>
             </Link>
           </div>
           <div className="-mr-2 -my-2 md:hidden">
             <Popover.Button
               className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
-              onClick={() => setMobileMenuOpen(true)}
+onClick={() => setMobileMenuOpen(true)}
             >
               <span className="sr-only">Mở menu chính</span>
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
@@ -109,8 +110,8 @@ const Navbar = () => {
                     <span className="sr-only">Mở menu người dùng</span>
                     <img
                       className="h-8 w-8 rounded-full"
-                      src={user.avatar || 'https://via.placeholder.com/150'} // Thêm avatar nếu có
-                      alt=""
+                      src={user.avatar || avatar} // Dùng avatar mặc định nếu user.avatar không tồn tại
+                      alt="avatar"
                     />
                     <span className="ml-2 text-gray-700 hidden lg:inline-block">{user.fullName || user.username}</span>
                     <ChevronDownIcon className="ml-1 h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -130,7 +131,7 @@ const Navbar = () => {
                       {({ active }) => (
                         <Link
                           to="/dashboard/profile"
-                          className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                         >
                           Hồ sơ của tôi
                         </Link>
@@ -201,7 +202,7 @@ const Navbar = () => {
               </div>
               <div className="mt-6">
                 <nav className="grid gap-y-8">
-                  {navigation.map((item) => (
+{navigation.map((item) => (
                     <Link
                       key={item.name}
                       to={item.href}

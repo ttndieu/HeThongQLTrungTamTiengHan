@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 // Import các trang Dashboard cụ thể cho từng vai trò
 import StudentDashboardPage from './student/StudentDashboardPage';
-// import TeacherDashboardPage from './teacher/TeacherDashboardPage';
+import TeacherDashboardPage from './teacher/TeacherDashboardPage';
 // import AcademicDashboardPage from './academic/AcademicDashboardPage';
 // import AccountingDashboardPage from './accounting/AccountingDashboardPage';
 // import AdminDashboardPage from './admin/AdminDashboardPage';

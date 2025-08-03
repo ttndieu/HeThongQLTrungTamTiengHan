@@ -5,7 +5,7 @@ import authService from '../services/authService'; // Đảm bảo import đúng
 import { useNotification } from './NotificationContext';
 import { ROLES } from '../utils/constants'; // Import ROLES nếu cần dùng ở đây
 
-const AuthContext = createContext(null);
+export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
