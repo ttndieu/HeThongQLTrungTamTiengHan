@@ -1,7 +1,7 @@
 // src/components/common/Table.jsx
 import React from 'react';
 
-const Table = ({ headers, data, renderRow, emptyMessage = "Không có dữ liệu nào." }) => {
+const Table = ({ headers = [], data = [], renderRow, emptyMessage = "Không có dữ liệu nào." }) => {
   return (
     <div className="overflow-x-auto shadow-md rounded-lg">
       <table className="min-w-full divide-y divide-gray-200">

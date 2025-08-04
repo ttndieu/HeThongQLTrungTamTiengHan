@@ -2,7 +2,8 @@
 import React, { createContext, useState, useContext, useCallback } from 'react';
 import Alert from '../components/common/Alert'; // Sẽ tạo ở phần sau
 
-const NotificationContext = createContext(null);
+export const NotificationContext = createContext(null);
+
 
 export const NotificationProvider = ({ children }) => {
   const [notification, setNotification] = useState(null); // { message, type: 'success'|'error'|'warning' }
@@ -14,7 +15,7 @@ export const NotificationProvider = ({ children }) => {
     }
     setNotification({ message, type });
     const id = setTimeout(() => {
-      setNotification(null);
+      showNotification(null);
     }, duration);
     setTimeoutId(id);
   }, [timeoutId]);

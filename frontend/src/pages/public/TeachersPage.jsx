@@ -3,6 +3,10 @@ import React, { useState, useEffect } from 'react';
 import publicService from '../../services/publicService';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 import { UserCircleIcon } from '@heroicons/react/24/outline'; // Icon cho giáo viên
+import avatar from '../../assets/avatar.jpg'
+
+
+
 
 const TeachersPage = () => {
   const [teachers, setTeachers] = useState([]);
@@ -46,7 +50,7 @@ const TeachersPage = () => {
                 {/*  */}
                 <img
                   className="h-16 w-16 rounded-full object-cover"
-                  src={teacher.avatar || 'https://via.placeholder.com/150/0000FF/FFFFFF?text=GV'} // Avatar mặc định
+                  src={avatar} // Avatar mặc định
                   alt={teacher.fullName}
                 />
               </div>
