@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import NotificationToast from '../common/NotificationToast';
+import logo from '../../assets/logo.png'
 
 const AuthLayout = ({ children, title }) => {
   return (
@@ -10,8 +11,8 @@ const AuthLayout = ({ children, title }) => {
         <div>
           <Link to="/" className="flex justify-center">
             <img
-              className="mx-auto h-12 w-auto"
-              src="/logo.png" // Thay thế bằng đường dẫn logo của bạn
+              className="mx-auto h-16 w-auto"
+              src={logo}
               alt="Workflow"
             />
           </Link>

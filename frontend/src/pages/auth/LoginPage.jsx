@@ -107,11 +107,11 @@ const LoginPage = () => {
             Đăng ký ngay
           </Link>
         </p>
-        {/* <p className="mt-2 text-sm text-gray-600">
+        <p className="mt-2 text-sm text-gray-600">
           <Link to="/auth/forgot-password" className="font-medium text-blue-600 hover:text-blue-500">
             Quên mật khẩu?
           </Link>
-        </p> */}
+        </p>
       </div>
     </div>
   );
