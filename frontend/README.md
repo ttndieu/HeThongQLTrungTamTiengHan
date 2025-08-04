@@ -214,8 +214,9 @@ Hành động chính: Quản lý toàn bộ người dùng, xem báo cáo tổng
 
 npm install react-router-dom 
 npm install @headlessui/react
-
-
+npm install react-toastify
+npm install react-icons
+npm install react-chartjs-2 chart.js
 
 3. Xây dựng các thành phần cốt lõi
 3.1. Tạo Context API (src/contexts/)

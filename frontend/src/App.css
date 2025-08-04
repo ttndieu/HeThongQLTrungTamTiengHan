@@ -1,1 +1,27 @@
 @import "tailwindcss";
+
+/* Định nghĩa các kiểu tùy chỉnh cho theme */
+@layer base {
+  :root {
+    --background: #f7fafc; /* Màu nền light mode */
+    --text-color: #1a202c; /* Màu chữ light mode */
+    --card-bg: #ffffff; /* Màu nền card light mode */
+  }
+
+  :root.dark {
+    --background: #1a202c; /* Màu nền dark mode */
+    --text-color: #e2e8f0; /* Màu chữ dark mode */
+    --card-bg: #2d3748; /* Màu nền card dark mode */
+  }
+}
+
+/* Áp dụng biến tùy chỉnh */
+body {
+  background-color: var(--background);
+  color: var(--text-color);
+  font-family: sans-serif; /* Thay font-inter bằng sans-serif để tương thích */
+}
+
+.card {
+  background-color: var(--card-bg);
+}

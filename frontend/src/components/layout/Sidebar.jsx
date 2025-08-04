@@ -12,6 +12,7 @@ import {
     ShieldCheckIcon, PencilSquareIcon, EnvelopeIcon, CubeTransparentIcon,
     IdentificationIcon, ComputerDesktopIcon // Example for Admin dashboard or overall
 } from '@heroicons/react/24/outline';
+import logo from '../../assets/logo.png'
 
 
 const Sidebar = ({ navigation }) => {
@@ -20,14 +21,13 @@ const Sidebar = ({ navigation }) => {
 
     return (
         <div className="flex flex-col flex-grow border-r border-gray-200 bg-white overflow-y-auto">
-            <div className="flex items-center flex-shrink-0 px-4 py-4">
+            <div className="flex items-center justify-center flex-shrink-0 px-4 py-4">
                 <Link to="/" className="flex items-center">
                     <img
-                        className="h-8 w-auto"
-                        src="/logo.png"
-                        alt="EduCenter Logo"
+                        className="h-18 w-auto"
+                        src={logo}
+                        alt="logo"
                     />
-                    <span className="ml-2 text-xl font-bold text-gray-900">EduCenter</span>
                 </Link>
             </div>
             <nav className="flex-1 flex flex-col px-2 py-4">
