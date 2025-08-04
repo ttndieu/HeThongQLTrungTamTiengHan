@@ -9,6 +9,7 @@ import LoadingSpinner from '../../components/common/LoadingSpinner';
 import Button from '../../components/common/Button';
 import Modal from '../../components/common/Modal';
 import { ROLES } from '../../utils/constants';
+import sach from '../../assets/sach.png';
 
 const CourseDetailPage = () => {
   const { id } = useParams();
@@ -100,7 +101,8 @@ const CourseDetailPage = () => {
         <div className="md:flex-shrink-0">
           <img
             className="w-full h-64 object-cover md:w-80 md:h-full"
-            src={course.imageUrl || '/assets/images/course-placeholder.jpg'}
+            // src={course.imageUrl || sach}
+            src={sach}
             alt={course.name}
           />
         </div>

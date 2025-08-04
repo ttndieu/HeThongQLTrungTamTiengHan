@@ -28,18 +28,24 @@ import TeacherGradeEntryPage from '../pages/dashboard/teacher/TeacherGradeEntryP
 import TeacherAssignmentManagementPage from '../pages/dashboard/teacher/TeacherAssignmentManagementPage';
 import TeacherSalaryPage from '../pages/dashboard/teacher/TeacherSalaryPage';
 import TeacherNotificationsPage from '../pages/dashboard/teacher/TeacherNotificationsPage';
-// ... (các imports bị comment khác)
+// Import các trang của Admin
+import AdminDashboardPage from '../pages/dashboard/admin/AdminDashboardPage';
+import AdminUserManagementPage from '../pages/dashboard/admin/AdminUserManagementPage';
+import AdminReportsPage from '../pages/dashboard/admin/AdminReportsPage';
+import AdminSystemSettingsPage from '../pages/dashboard/admin/AdminSystemSettingsPage';
+// import AdminWebsiteContentPage from '../pages/dashboard/admin/AdminWebsiteContentPage';
+import AdminFeedbackAnalysisPage from '../pages/dashboard/admin/AdminFeedbackAnalysisPage';
 
 const DashboardRoutes = () => {
-  return (
-    <Routes>
-      {/* Protected Route cho mọi người dùng đã đăng nhập */}
-      <Route element={<ProtectedRoute allowedRoles={[ROLES.HOC_VIEN, ROLES.GIANG_VIEN, ROLES.QUAN_LY_HOC_VU, ROLES.KE_TOAN, ROLES.QUAN_TRI_HE_THONG, ROLES.REGISTERED_USER]} />}>
-        {/* Main dashboard entry point */}
-        <Route path="/" element={<DashboardLayout />}>
-          {/* Default route for "/" */}
-          <Route index element={<DashboardHomePage />} />
-          <Route path="profile" element={<UserProfilePage />} />
+    return (
+        <Routes>
+            {/* Protected Route cho mọi người dùng đã đăng nhập */}
+            <Route element={<ProtectedRoute allowedRoles={[ROLES.HOC_VIEN, ROLES.GIANG_VIEN, ROLES.QUAN_LY_HOC_VU, ROLES.KE_TOAN, ROLES.QUAN_TRI_HE_THONG, ROLES.REGISTERED_USER]} />}>
+                {/* Main dashboard entry point */}
+                <Route path="/" element={<DashboardLayout />}>
+                    {/* This index route renders DashboardHomePage when path is exactly "/" */}
+                    <Route index element={<DashboardHomePage />} />
+                    <Route path="profile" element={<UserProfilePage />} /> {/* Profile is also under DashboardLayout */}
 
           {/* Routes cho Registered User */}
           <Route path="registered" element={<ProtectedRoute allowedRoles={[ROLES.REGISTERED_USER]} />}>

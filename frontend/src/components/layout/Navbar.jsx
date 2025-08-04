@@ -8,6 +8,8 @@ import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outli
 import { ROLES } from '../../utils/constants'; // Import ROLES
 import avatar from '../../assets/avatar.jpg'
 import logo from '../../assets/logo.png'
+import avatar from '../../assets/avatar.jpg'
+import logo from '../../assets/logo.png'
 
 const navigation = [
   { name: 'Trang chủ', href: '/' },

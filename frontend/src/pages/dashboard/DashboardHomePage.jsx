@@ -9,7 +9,7 @@ import StudentDashboardPage from './student/StudentDashboardPage';
 import TeacherDashboardPage from './teacher/TeacherDashboardPage';
 // import AcademicDashboardPage from './academic/AcademicDashboardPage';
 // import AccountingDashboardPage from './accounting/AccountingDashboardPage';
-// import AdminDashboardPage from './admin/AdminDashboardPage';
+import AdminDashboardPage from './admin/AdminDashboardPage';
 import RegisteredUserDashboardPage from './registeredUser/RegisteredUserDashboardPage';
 
 const DashboardHomePage = () => {
