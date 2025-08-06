@@ -73,12 +73,12 @@ const DashboardRoutes = () => {
           </Route>
           {/* Routes cho Admin */}
         <Route path="admin/*" element={<ProtectedRoute allowedRoles={[ROLES.QUAN_TRI_HE_THONG]} />}>
-          <Route index element={<DashboardLayout><AdminDashboardPage /></DashboardLayout>} />
-          <Route path="users" element={<DashboardLayout><AdminUserManagementPage /></DashboardLayout>} />
-          <Route path="reports" element={<DashboardLayout><AdminReportsPage /></DashboardLayout>} />
-          <Route path="settings" element={<DashboardLayout><AdminSystemSettingsPage /></DashboardLayout>} />
-          <Route path="website-content" element={<DashboardLayout><AdminWebsiteContentPage /></DashboardLayout>} />
-          <Route path="feedback-analysis" element={<DashboardLayout><AdminFeedbackAnalysisPage /></DashboardLayout>} />
+          <Route index element={<AdminDashboardPage />} />
+          <Route path="users" element={<AdminUserManagementPage />} />
+          <Route path="reports" element={<AdminReportsPage />} />
+          <Route path="settings" element={<AdminSystemSettingsPage />} />
+          <Route path="website-content" element={<AdminWebsiteContentPage />} />
+          <Route path="feedback-analysis" element={<AdminFeedbackAnalysisPage />} />
         </Route>
 
           {/* Catch-all for paths under DashboardLayout */}

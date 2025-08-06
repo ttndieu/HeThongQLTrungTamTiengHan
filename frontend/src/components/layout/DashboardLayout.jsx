@@ -1,7 +1,7 @@
 // src/components/layout/DashboardLayout.jsx
 import React, { Fragment, useState } from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
-import { Dialog, Transition, Menu } from '@headlessui/react'; // <-- BỎ COMMENT DÒNG NÀY
+import { Dialog, Transition, Menu } from '@headlessui/react'; 
 import {
   Bars3Icon,
   BellIcon,
