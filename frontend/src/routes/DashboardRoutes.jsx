@@ -33,7 +33,7 @@ import AdminDashboardPage from '../pages/dashboard/admin/AdminDashboardPage';
 import AdminUserManagementPage from '../pages/dashboard/admin/AdminUserManagementPage';
 import AdminReportsPage from '../pages/dashboard/admin/AdminReportsPage';
 import AdminSystemSettingsPage from '../pages/dashboard/admin/AdminSystemSettingsPage';
-// import AdminWebsiteContentPage from '../pages/dashboard/admin/AdminWebsiteContentPage';
+import AdminWebsiteContentPage from '../pages/dashboard//admin/AdminWebsiteContentManagementPage';
 import AdminFeedbackAnalysisPage from '../pages/dashboard/admin/AdminFeedbackAnalysisPage';
 
 const DashboardRoutes = () => {
@@ -71,6 +71,15 @@ const DashboardRoutes = () => {
             <Route path="salary" element={<TeacherSalaryPage />} /> {/* Tính năng 40 */}
             <Route path="notifications" element={<TeacherNotificationsPage />} /> {/* Tính năng 17, 18 */}
           </Route>
+          {/* Routes cho Admin */}
+        <Route path="admin/*" element={<ProtectedRoute allowedRoles={[ROLES.QUAN_TRI_HE_THONG]} />}>
+          <Route index element={<DashboardLayout><AdminDashboardPage /></DashboardLayout>} />
+          <Route path="users" element={<DashboardLayout><AdminUserManagementPage /></DashboardLayout>} />
+          <Route path="reports" element={<DashboardLayout><AdminReportsPage /></DashboardLayout>} />
+          <Route path="settings" element={<DashboardLayout><AdminSystemSettingsPage /></DashboardLayout>} />
+          <Route path="website-content" element={<DashboardLayout><AdminWebsiteContentPage /></DashboardLayout>} />
+          <Route path="feedback-analysis" element={<DashboardLayout><AdminFeedbackAnalysisPage /></DashboardLayout>} />
+        </Route>
 
           {/* Catch-all for paths under DashboardLayout */}
           <Route path="*" element={<Navigate to="/" replace />} />

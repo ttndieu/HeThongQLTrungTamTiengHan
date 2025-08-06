@@ -53,7 +53,7 @@ const AdminDashboardPage = () => {
                     </div>
                     <div className="ml-4">
                         <p className="text-sm font-medium text-gray-500">Tổng Doanh Thu</p>
-                        <p className="text-2xl font-bold text-gray-900">{stats.totalRevenue.toLocaleString('vi-VN')} VND</p>
+                        {/* <p className="text-2xl font-bold text-gray-900">{stats.totalRevenue.toLocaleString('vi-VN')} VND</p> */}
                     </div>
                 </Card>
                 <Card className="flex items-center p-6 bg-white shadow-md rounded-lg">

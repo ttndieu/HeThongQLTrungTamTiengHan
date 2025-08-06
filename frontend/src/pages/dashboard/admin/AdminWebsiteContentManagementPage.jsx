@@ -6,7 +6,7 @@ import Button from '../../../components/common/Button';
 import FormField from '../../../components/common/FormField';
 import LoadingSpinner from '../../../components/common/LoadingSpinner';
 import Alert from '../../../components/common/Alert';
-import { mockGetWebsiteContent, mockUpdateWebsiteContent } from '../../../services/adminService';
+import adminService from '../../../services/adminService'; // ✅ Sửa tại đây
 
 const AdminWebsiteContentManagementPage = () => {
     const [content, setContent] = useState({
@@ -23,7 +23,7 @@ const AdminWebsiteContentManagementPage = () => {
     useEffect(() => {
         const fetchContent = async () => {
             try {
-                const data = await mockGetWebsiteContent();
+                const data = await adminService.getWebsiteContent(); // ✅ Gọi từ adminService
                 setContent(data);
             } catch (err) {
                 setError('Không thể lấy nội dung trang web.');
@@ -46,7 +46,7 @@ const AdminWebsiteContentManagementPage = () => {
         setAlert(null);
         setError(null);
         try {
-            await mockUpdateWebsiteContent(content);
+            await adminService.updateWebsiteContent(content); // ✅ Gọi từ adminService
             setAlert({ type: 'success', message: 'Nội dung trang web đã được cập nhật thành công!' });
         } catch (err) {
             setError('Đã xảy ra lỗi khi cập nhật nội dung.');
@@ -58,7 +58,7 @@ const AdminWebsiteContentManagementPage = () => {
     if (loading) {
         return <div className="p-6 flex justify-center items-center h-screen"><LoadingSpinner size="lg" /></div>;
     }
-    
+
     if (error) {
         return <div className="p-6"><Alert type="error" message={error} /></div>;
     }
@@ -66,7 +66,7 @@ const AdminWebsiteContentManagementPage = () => {
     return (
         <div className="container mx-auto p-6">
             <h1 className="text-3xl font-bold mb-6 text-gray-900">Quản lý Nội dung Trang web</h1>
-            
+
             {alert && <Alert type={alert.type} message={alert.message} className="mb-4" />}
 
             <Card>
@@ -99,7 +99,7 @@ const AdminWebsiteContentManagementPage = () => {
                         value={content.contactEmail}
                         onChange={handleChange}
                     />
-                    
+
                     <div className="flex justify-end">
                         <Button
                             type="submit"
