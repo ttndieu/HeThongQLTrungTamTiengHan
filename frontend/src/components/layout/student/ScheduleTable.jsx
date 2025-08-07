@@ -1,0 +1,52 @@
+import React from 'react';
+
+const ScheduleTable = ({ schedule }) => {
+  return (
+    <div className="overflow-x-auto">
+      <table className="min-w-full divide-y divide-gray-200 border border-gray-200 rounded-lg shadow-sm">
+        <thead className="bg-gray-50">
+          <tr>
+            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Môn học/Lớp
+            </th>
+            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Thời gian
+            </th>
+            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Ngày
+            </th>
+            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Giáo viên
+            </th>
+            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Địa điểm
+            </th>
+          </tr>
+        </thead>
+        <tbody className="bg-white divide-y divide-gray-200">
+          {schedule.map((item, index) => (
+            <tr key={index} className="hover:bg-gray-50">
+              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                {item.courseName}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                {item.time}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                {item.day}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                {item.teacher}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                {item.location}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+export default ScheduleTable;

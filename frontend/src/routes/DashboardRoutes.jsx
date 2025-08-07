@@ -17,7 +17,12 @@ import RegisteredUserPlacementTestPage from '../pages/dashboard/registeredUser/R
 
 // Import các trang của Học viên
 import StudentDashboardPage from '../pages/dashboard/student/StudentDashboardPage';
-// import StudentSchedulePage from '../pages/dashboard/student/StudentSchedulePage'; // Uncomment when page is ready
+import StudentSchedulePage from '../pages/dashboard/student/StudentSchedulePage';
+import StudentGradesPage from '../pages/dashboard/student/StudentGradesPage';
+import StudentMaterialsPage from '../pages/dashboard/student/StudentMaterialsPage';
+import StudentAssignmentsPage from '../pages/dashboard/student/StudentAssignmentsPage';
+import StudentPaymentsPage from '../pages/dashboard/student/StudentPaymentsPage';
+import StudentFeedbackPage from '../pages/dashboard/student/StudentFeedbackPage';
 // Import các trang của Giảng viên
 import TeacherDashboardPage from '../pages/dashboard/teacher/TeacherDashboardPage';
 import TeacherClassesPage from '../pages/dashboard/teacher/TeacherClassesPage';
@@ -56,7 +61,13 @@ const DashboardRoutes = () => {
 
           {/* Routes cho Học viên */}
           <Route path="student" element={<ProtectedRoute allowedRoles={[ROLES.HOC_VIEN]} />}>
-            <Route index element={<StudentDashboardPage />} />
+              <Route index element={<StudentDashboardPage />} />
+              <Route path="schedule" element={<StudentSchedulePage />} /> 
+              <Route path="grades" element={<StudentGradesPage />} /> 
+              <Route path="materials" element={<StudentMaterialsPage />} /> 
+              <Route path="assignments" element={<StudentAssignmentsPage />} /> 
+              <Route path="payments" element={<StudentPaymentsPage />} /> 
+              <Route path="feedback" element={<StudentFeedbackPage />} /> 
           </Route>
 
            {/* Routes cho Giảng viên */}
