@@ -441,13 +441,25 @@ export const mockRegisterForPlacementTest = async (userId, testData) => {
   });
 };
 
-// Student specific
+// // Student specific
 export const mockFetchStudentSchedule = async (studentId) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       const studentEnrollments = enrollments.filter((e) => e.studentId === studentId && e.status === 'active');
       const studentClasses = classes.filter((cls) => studentEnrollments.some((e) => e.classId === cls.id));
-      resolve(studentClasses);
+      
+      const enrichedClasses = studentClasses.map(cls => {
+        const courseInfo = courses.find(c => c.id === cls.courseId);
+        return {
+          ...cls,
+          courseName: courseInfo?.name || 'Không xác định',
+          coursePrice: courseInfo?.price || 0, 
+          teacherName: users.find(u => u.id === cls.teacherId)?.fullName || 'Chưa phân công'
+        };
+      });
+      
+      console.log('Mock returning schedule with prices:', enrichedClasses); 
+      resolve(enrichedClasses);
     }, 500);
   });
 };
@@ -457,6 +469,8 @@ export const mockFetchStudentGrades = async (studentId) => {
     setTimeout(() => {
       const studentExams = examResults.filter((r) => r.studentId === studentId);
       const studentSubmissionsWithGrades = studentSubmissions.filter((s) => s.studentId === studentId && s.status === 'graded');
+      
+      console.log('Mock returning grades:', { exams: studentExams, assignments: studentSubmissionsWithGrades });
       resolve({ exams: studentExams, assignments: studentSubmissionsWithGrades });
     }, 500);
   });
@@ -467,7 +481,15 @@ export const mockFetchStudentMaterials = async (studentId) => {
     setTimeout(() => {
       const studentClassIds = enrollments.filter((e) => e.studentId === studentId).map((e) => e.classId);
       const materials = assignments.filter((a) => studentClassIds.includes(a.classId));
-      resolve(materials);
+      
+      // Enrich với thông tin course name
+      const enrichedMaterials = materials.map(material => ({
+        ...material,
+        courseName: classes.find(c => c.id === material.classId)?.className || 'Không xác định'
+      }));
+      
+      console.log('Mock returning materials:', enrichedMaterials); 
+      resolve(enrichedMaterials);
     }, 500);
   });
 };
@@ -481,12 +503,20 @@ export const mockFetchStudentAssignments = async (studentId) => {
 
       const combinedAssignments = classAssignments.map((assign) => {
         const submission = studentSubs.find((sub) => sub.assignmentId === assign.id);
+        const classInfo = classes.find(c => c.id === assign.classId);
+        const courseInfo = courses.find(c => c.id === classInfo?.courseId);
+        
         return {
           ...assign,
           submission: submission ? { ...submission } : null,
           status: submission ? submission.status : 'pending',
+          // ✅ THÊM THÔNG TIN ĐÃ JOIN
+          className: classInfo?.className || 'Không xác định',
+          courseName: courseInfo?.name || 'Không xác định'
         };
       });
+      
+      console.log('Mock returning enriched assignments:', combinedAssignments);
       resolve(combinedAssignments);
     }, 500);
   });
@@ -524,7 +554,16 @@ export const mockFetchStudentPayments = async (studentId) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       const studentPayments = payments.filter((p) => p.userId === studentId && p.type === 'tuition');
-      resolve(studentPayments);
+      
+      // Enrich với thông tin class và course
+      const enrichedPayments = studentPayments.map(payment => ({
+        ...payment,
+        className: classes.find(c => c.id === payment.classId)?.className || 'Không xác định',
+        courseName: courses.find(c => c.id === classes.find(cl => cl.id === payment.classId)?.courseId)?.name || 'Không xác định'
+      }));
+      
+      console.log('Mock returning payments:', enrichedPayments);
+      resolve(enrichedPayments);
     }, 500);
   });
 };
